@@ -1,0 +1,66 @@
+Настраиваем Windows Terminal
+Выбираем шрифт https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts
+
+я выбрал - https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/AnonymousPro
+скачиваем и устанавливаем 
+
+для windows - Заходим в настройки Windows Terminal, открываем settings 
+В раздел defaults вставляем строку "fontFace": "Anonymice NF" - где Anonymice NF - название шрифта
+
+    "profiles":
+    {
+        "defaults":
+        {
+            // Put settings here that you want to apply to all profiles.
+			"fontFace": "Anonymice NF"
+        },
+
+Таким образом все терминалы у которых в списке не прописан fontface отдельно - будут запускаться с этим шрифтом
+
+Установка zsh
+Устанавливаем sudo dnf install zsh или sudo apt install zsh -y
+
+Смотрим где исполняемый файл whereis zsh
+
+zsh: /usr/bin/zsh /usr/lib64/zsh /usr/share/zsh /usr/share/man/man1/zsh.1.gz /usr/share/info/zsh.info-5.gz /usr/share/info/zsh.info-3.gz /usr/share/info/zsh.info-2.gz /usr/share/info/zsh.info-6.gz /usr/share/info/zsh.info-4.gz /usr/share/info/zsh.info.gz /usr/share/info/zsh.info-1.gz
+
+Добавляем пользователю user шелл zsh
+
+sudo usermod -s /usr/bin/zsh mmtr
+
+Перелогиниваемся. У нас дефолтный zsh
+
+Установка и настройка oh-my-zsh
+Установка oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+Мы в дефолтном oh-my-zsh
+
+Устанавливаем плагины
+автодобавление и подсветка
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+Добавляем наши плагины и еще несколько удобных (web_search для поиска из командной строки -пример yandex ansible или google kubernetes и sudo -по двойному ESC вызывается предыдущая команда с sudo или добавляется к текущей sudo)
+
+sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions sudo web-search)/g' ~/.zshrc
+
+Выполняем source ~/.zshrc
+
+Плагины установлены
+
+Устанавливаем тему
+Качаем тему
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+Устанавливаем 
+
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
+
+source ~/.zshrc
+
+Далее идет настройка для собственного удобства
+
+Мой конфиг yyyn3121111121y2y
