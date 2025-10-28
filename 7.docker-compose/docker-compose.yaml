@@ -21,7 +21,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/weatherdb
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: pass
-      WEATHERSTACK_API_KEY: 3fdfc374c8e95cd70d86abcb4ac67368
+      WEATHERSTACK_API_KEY: your_api_key
     ports:
       - "8080:8080"
 
