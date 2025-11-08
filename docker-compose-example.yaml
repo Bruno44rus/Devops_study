@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14
+    container_name: demo-postgres
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo
+      POSTGRES_DB: demo
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - demo-net
+
+  adminer:
+    image: adminer:latest
+    container_name: demo-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - demo-net
+
+volumes:
+  dbdata:
+
+networks:
+  demo-net:
